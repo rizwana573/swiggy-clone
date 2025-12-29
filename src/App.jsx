@@ -1,34 +1,19 @@
 import SearchAndFilter from "./components/SearchAndFilter";
-import RestaurantContainer from "./components/RestaurantContainer";
-import { useEffect, useState } from "react";
-import { API_URL } from "./utils/constants";
+import ProductsContainer from "./components/ProductsContainer";
+import useProductData from "./utils/useProductData";
 
 const App = () => {
-  const [restaurantData, setRestaurantData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(API_URL);
-      const data = await response.json();
-      setRestaurantData(data?.recipes);
-      setFilteredData(data?.recipes);
-      setIsLoading(false);
-    }
-    fetchData();
-  }, []);
+  const {productData, filteredData, isLoading, setFilteredData} = useProductData();
   return (
     <>
       <SearchAndFilter
-        restaurantData={restaurantData}
+        productData={productData}
         setFilteredData={setFilteredData}
       />
-      <RestaurantContainer
-        restaurantData={filteredData}
+      <ProductsContainer
+        productData={filteredData}
         isLoading={isLoading}
       />
-      {/* <Footer /> */}
     </>
   );
 };

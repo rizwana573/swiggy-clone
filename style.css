@@ -11,21 +11,38 @@ img {
 }
 .card img {
   max-width: 100%;
-  height: 60%;
+  height: 50%;
   width: 100%;
+}
+.addToCart,
+.removeItem,
+.submit {
+  background: rgb(40, 225, 40);
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.removeItem {
+  background: rgb(231, 62, 62);
 }
 header {
   align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
   padding: 1rem;
+  position: sticky;
   display: flex;
   box-shadow: 1px 1px 3px #f0f0f0;
+  top: 0;
+  background: #d3edd3;
+  z-index: 10;
 }
 .logo {
   width: 10rem;
 }
-.navbar {
+.navbar,
+ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,7 +54,8 @@ a {
   text-decoration: none;
 }
 button#theme,
-button#topRes {
+button#topRes,
+button.login {
   cursor: pointer;
   padding: 0.5rem 1rem;
   /* max-width: 4rem; */
@@ -61,9 +79,10 @@ button:hover {
   width: 13rem;
   overflow: hidden;
   transition: transform 0.2s;
+  height: 30rem;
 }
-.card-container .card:hover {
-  transform: translateY(-5px);
+.card-container a:hover {
+  opacity: 1;
 }
 .card-container .card .card-content > * {
   margin: 0.5rem auto;
@@ -136,7 +155,7 @@ footer {
     transform: translateX(200%);
   }
 }
-.recipeName {
+.productName {
   font-weight: 700;
 }
 .noResults {
@@ -146,24 +165,44 @@ footer {
   justify-content: center;
   min-height: 55vh;
 }
-.recipeDetailPage {
+.productDetailPage {
   max-width: 70%;
   margin: 5rem auto;
 }
-.recipeDetailPage .recipeName {
+.productDetailPage .productName {
   margin: 1rem auto;
 }
-.recipeDetailPage .recipeImg {
+.productDetailPage .productImg {
   max-width: 80%;
 }
-.recipeDetailPage p {
+.productDetailPage p {
   margin: 0.5rem auto;
 }
-inner-page {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    flex-flow: column;
-    align-items: center;
-    min-height: 72vh;
+.inner-page,
+.offline-message {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+  min-height: 72vh;
+}
+.jeweleryProduct {
+  position: absolute;
+  color: #fff;
+  background: #000;
+  padding: 4px;
+  border-radius: 4px;
+}
+.contactForm input {
+  min-height: 2.25rem;
+  border-radius:0.25rem;
+  padding:0 0 0 0.25rem;
+}
+.contactForm {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
 }

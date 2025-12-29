@@ -1,11 +1,22 @@
-import {Link} from "react-router";
+import { Link } from "react-router";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
-const Navbar = ({setIsLoggedIn, isLoggedIn}) => {
+const Navbar = ({ setIsLoggedIn, isLoggedIn, isOnline }) => {
+  const { loggedInUser } = useContext(UserContext);
+  //console.log(loggedInUser);
+  const cartItems = useSelector((state) => {
+    return state.cart || [];
+  });
+  const quantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <ul className="navbar">
-        <li>
-            <button id="theme">Light</button>
-        </li>
+      <li>{isOnline ? "✅ Online" : "❌ Offline"}</li>
+      <li>
+        <button id="theme">Light</button>
+      </li>
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -16,11 +27,14 @@ const Navbar = ({setIsLoggedIn, isLoggedIn}) => {
         <Link to="/contact-us">Contact Us</Link>
       </li>
       <li>
-        <Link to="/cart">Cart</Link>
+        <Link data-testid="cartQuantity" to="/cart">Cart - {quantity}</Link>
       </li>
-       <li>
-            <button className="login" onClick={()=> setIsLoggedIn(!isLoggedIn)}>{isLoggedIn? "Logout": "Login"}</button>
-        </li>
+      <li>{isLoggedIn && <p>Hi {loggedInUser}</p>}</li>
+      <li>
+        <button className="login" onClick={() => setIsLoggedIn(!isLoggedIn)}>
+          {isLoggedIn ? "Logout" : "Login"}
+        </button>
+      </li>
     </ul>
   );
 };
